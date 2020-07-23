@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %} Railways | Booking {% endblock %}
+
+{% block styles %}
+<style media="screen">
+#banner {
+    text-align: center;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md" id="banner">
+                <h2>Welcome to Railways Reservation</h2>
+                <p class="lead">Book your tickets, you can book a ticket for maximum of 6 Members.</p>
+            </div>
+        </div>        
+    </div>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="conatiner">
+            <div class="row">
+            <div class="col-md-4"></div>
+            <div class="alert alert-warning col-md-4  alert-dismissible fade show " role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="col-md-4"></div>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}     
+    <div class="container-fluid">
+        <form id="booking-form" method="POST" action="{% url 'site_booking' %}">
+            <div class="container">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="row">
+                    <div class="form-group col-md">
+                        <label class="col-12">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                </div>
+                {% endfor %}
+                <input type="submit" class="btn btn-primary" value="Book" />
+            </div>
+        <form>
+    </div>
+{% endblock %}
+{% block myscript %}
+
+{% endblock %}

@@ -1,0 +1,4 @@
+database = 'railway_reservation'
+user = 'root'
+password = 'N0rmalu$er1171'
+default-character-set = utf8

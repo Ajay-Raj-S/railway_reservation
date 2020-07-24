@@ -2,6 +2,6 @@
 
 Railway Ticket Reservation System,
 
-Backend - Django,
-Frontend - Bootstrap, with Django templates
-Database - MySQL,
+Backend - Django, <br>
+Frontend - Bootstrap, with Django templates, <br>
+Database - MySQL, <br>

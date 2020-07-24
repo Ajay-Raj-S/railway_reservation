@@ -14,12 +14,12 @@ class Profile(models.Model):
         return self.user.get_full_name()
 
 
-class TicketStatus(models.Model):
-    _id = models.UUIDField(primary_key=True, default=uuid.uuid4)    
-    status_name = models.CharField(max_length=32)
+# class TicketStatus(models.Model):
+#     _id = models.UUIDField(primary_key=True, default=uuid.uuid4)    
+#     status_name = models.CharField(max_length=32)
 
-    def __str__(self):
-        return self.status_name
+#     def __str__(self):
+#         return self.status_name
 
 
 class Berth(models.Model):
@@ -27,6 +27,9 @@ class Berth(models.Model):
     seat_no = models.PositiveSmallIntegerField()
     seat_name = models.CharField(max_length=6)
     coach_name = models.CharField(max_length=6)    
+    is_alloted = models.BooleanField(default=False)
+    ticket_name = models.CharField(max_length=10, default=None)
+    rac_count = models.PositiveSmallIntegerField(default=2)
 
     def __str__(self):
         return str(self.seat_no) + '_' + self.seat_name + '_' + self.coach_name
@@ -50,8 +53,20 @@ class Passengers(models.Model):
     passenger_age = models.PositiveSmallIntegerField()
     passenger_gender = models.CharField(max_length=10)
     passenger_berth_preference = models.CharField(max_length=3)
-    passenger_ticket_status = models.ForeignKey('TicketStatus', on_delete=models.CASCADE)
+    passenger_berth_alloted = models.UUIDField(default=None, null=True)
+    passenger_ticket_status = models.CharField(max_length=10, default=None)
     passenger_authorized = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.passenger_reservation_id) + '_' + str(self.passenger_name)
+
+
+class Tickets(models.Model):
+    _id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    total_tickets = models.PositiveSmallIntegerField()
+    cnf_tickets = models.PositiveSmallIntegerField()
+    rac_tickets = models.PositiveSmallIntegerField()
+    waiting_tickets = models.PositiveSmallIntegerField()   
+
+    def __str__(self):
+        return 'total tickets ' + str(self.total_tickets)

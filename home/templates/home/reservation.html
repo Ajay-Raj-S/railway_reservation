@@ -14,8 +14,6 @@
     <div class="container">
         <div class="row">
             <div class="col-md" id="banner">
-                <h2>Welcome to Railways Reservation</h2>
-                <p class="lead">Book your tickets, you can book a ticket for maximum of 6 Members.</p>
             </div>
         </div>        
     </div>
@@ -34,13 +32,22 @@
             </div>
         </div>
         {% endfor %}
-    {% endif %}     
-    <div class="container-fluid text-center">
-        <form id="passenger-count" action="{% url 'site_booking' %}" method="POST">
+    {% endif %}
+    <div class="container-fluid">
+        <form action="{% url 'site_reservation' %}" method="POST">
             {% csrf_token %}
-            <p class="display-5">How may tickets you want? maximum of 6</p>
-            <input type="number" name="passenger_count" id="passenger_count" max=6 min=0 required />
-            <input type="submit" class="btn btn-primary" value="Book" />
+            {{ form.management_form }}
+            <div class="container">
+                {% for field in form %}
+                    <div class="row">
+                        <div class="form-group col-md">
+                            <label class="col-12">{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <input type="submit" class="btn btn-primary" value="Submit" />
         <form>
     </div>
 {% endblock %}

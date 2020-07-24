@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %} Railways | Reserved {% endblock %}
+
+{% block styles %}
+<style media="screen">
+#banner {
+    text-align: center;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md" id="banner">
+            </div>
+        </div>        
+    </div>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="conatiner">
+            <div class="row">
+            <div class="col-md-4"></div>
+            <div class="alert alert-warning col-md-4  alert-dismissible fade show " role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="col-md-4"></div>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+    <div class="container-fluid">
+        <br>
+        <div class="row">
+            <div class="col-md text-center">
+                <h5>Ticket Status</h5>
+            </div>
+            <br>
+        </div>
+        {% if Success %}
+            <div class="row">
+                <div class="col-md text-center">
+                    <h2 class="display-4">Ticket Booked</h2><br>
+                </div>
+            </div>
+            <br>
+            {% for datan in passengers|slice:":1" %}
+            <div class="container">
+                <div class="row">
+                {% for k in datan %}
+                    <div class="col-md">
+                        <strong>{{ k }}</strong>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+            {% endfor%}
+            <br>
+            {% for datan in passengers %}
+            <div class="container">
+                <div class="row">
+                {% for k, v in datan.items %}
+                    <div class="col-md-2">
+                        <p>{{ v }}</p>
+                    </div>
+                {% endfor %}
+                </div>
+                <br>
+            </div>
+            {% endfor %}
+            <br />
+        {% else %}
+            <div class="col-md">
+                <p>No Ticket Available</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

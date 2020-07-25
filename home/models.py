@@ -14,14 +14,6 @@ class Profile(models.Model):
         return self.user.get_full_name()
 
 
-# class TicketStatus(models.Model):
-#     _id = models.UUIDField(primary_key=True, default=uuid.uuid4)    
-#     status_name = models.CharField(max_length=32)
-
-#     def __str__(self):
-#         return self.status_name
-
-
 class Berth(models.Model):
     berth_id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     seat_no = models.PositiveSmallIntegerField()

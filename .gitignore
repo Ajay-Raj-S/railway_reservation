@@ -3,6 +3,8 @@
 *.pot
 *.pyc
 __pycache__/
+/__pycache__/
+*.cpython-38.pyc
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
